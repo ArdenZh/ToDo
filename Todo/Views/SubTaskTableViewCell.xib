@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Poppins-Regular.ttf">
+            <string>Poppins-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SubTaskReusableCell" rowHeight="78" id="KGk-i7-Jjw" customClass="SubTaskTableViewCell" customModule="Todo" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="7ob-hv-RpX">
+                        <rect key="frame" x="10" y="10" width="300" height="40"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZtR-4w-opL">
+                                <rect key="frame" x="0.0" y="10" width="20" height="20"/>
+                                <color key="backgroundColor" name="BackgroundWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="mBT-NG-kJL"/>
+                                    <constraint firstAttribute="width" constant="20" id="sZH-iP-MF3"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="taskNotDone"/>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="skjdlfsnjsonaj anfjlk skjsafl ksajfk lksafjklsa safjkl lkasf" borderStyle="roundedRect" placeholder="New subtask" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JbS-gC-Twb">
+                                <rect key="frame" x="30" y="3" width="270" height="34"/>
+                                <color key="backgroundColor" name="BackgroundWhite"/>
+                                <color key="textColor" name="ContentDark"/>
+                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="16"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" name="BackgroundWhite"/>
+                    </stackView>
+                </subviews>
+                <color key="backgroundColor" name="BackgroundWhite"/>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="7ob-hv-RpX" secondAttribute="bottom" constant="10" id="0I0-iG-u8X"/>
+                    <constraint firstAttribute="trailing" secondItem="7ob-hv-RpX" secondAttribute="trailing" constant="10" id="U9R-kw-CDM"/>
+                    <constraint firstItem="7ob-hv-RpX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="WLp-rL-fP3"/>
+                    <constraint firstItem="7ob-hv-RpX" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="pPA-vv-hbv"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <color key="backgroundColor" name="BackgroundWhite"/>
+            <connections>
+                <outlet property="titleTextField" destination="JbS-gC-Twb" id="Fig-Jm-Qbw"/>
+            </connections>
+            <point key="canvasLocation" x="208.69565217391306" y="7.7008928571428568"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="taskNotDone" width="20" height="20"/>
+        <namedColor name="BackgroundWhite">
+            <color red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="ContentDark">
+            <color red="0.18431372549019609" green="0.20784313725490197" blue="0.2196078431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
