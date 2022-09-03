@@ -10,86 +10,88 @@ import RealmSwift
 
 class TasksViewController: UIViewController {
     
-    @IBOutlet weak var todayTableView: ContentSizedTableView!
-    @IBOutlet weak var tomorrowTableView: ContentSizedTableView!
-    @IBOutlet weak var onWeekTableView: ContentSizedTableView!
-    @IBOutlet weak var somedayTableView: ContentSizedTableView!
+    @IBOutlet weak var tasksTableView: ContentSizedTableView!
     
     let realm = try! Realm()
     var notificationToken: NotificationToken?
-    let taskManager = TaskDateManager()
+    
+    let taskManager = TaskManager()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        todayTableView.register(UINib(nibName: "TaskTableViewCell", bundle: nil), forCellReuseIdentifier: "TaskReusableCell")
-        tomorrowTableView.register(UINib(nibName: "TaskTableViewCell", bundle: nil), forCellReuseIdentifier: "TaskReusableCell")
-        onWeekTableView.register(UINib(nibName: "TaskTableViewCell", bundle: nil), forCellReuseIdentifier: "TaskReusableCell")
-        somedayTableView.register(UINib(nibName: "TaskTableViewCell", bundle: nil), forCellReuseIdentifier: "TaskReusableCell")
+        tasksTableView.register(UINib(nibName: "TaskTableViewCell", bundle: nil), forCellReuseIdentifier: "TaskReusableCell")
+        tasksTableView.dataSource = self
+        tasksTableView.delegate = self
+        tasksTableView.dragDelegate = self
+        tasksTableView.dragInteractionEnabled = true
+
         
-        self.todayTableView.dataSource = self
-        self.tomorrowTableView.dataSource = self
-        self.onWeekTableView.dataSource = self
-        self.somedayTableView.dataSource = self
-        
+        //update table view when new task is added
         let allTasks = realm.objects(Task.self)
         addRealmObserver(results: allTasks)
         
         taskManager.updateAllTasksDateTypes()
         
-        //update tasks date when a new day comes and the app is active
+        // Update tasks date when a new day comes and the app is active
         NotificationCenter.default.addObserver(self, selector: #selector(dayChanged), name: .NSCalendarDayChanged, object: nil)
     }
     
     @objc func dayChanged(_ notification: Notification) {
         taskManager.updateAllTasksDateTypes()
-        updateTableViews()
-    }
-    
-    
-    func updateTableViews(){
-        todayTableView.reloadData()
-        tomorrowTableView.reloadData()
-        onWeekTableView.reloadData()
-        somedayTableView.reloadData()
+        tasksTableView.reloadData()
     }
     
     func addRealmObserver(results: Results<Task>){
         notificationToken = results.observe { [weak self] (changes: RealmCollectionChange) in
             switch changes {
             case .initial:
-                self?.updateTableViews()
+                self?.tasksTableView.reloadData()
             case .update(_, _, _, _):
-                self?.updateTableViews()
+                self?.tasksTableView.reloadData()
             case .error(let error):
                 fatalError("\(error)")
             }
         }
     }
     
+    //MARK: - Navigation
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
+        if segue.identifier == "editTask" {
+            if let destinationVC = segue.destination as? AddNewTaskViewController {
+                
+                guard let taskIndex = tasksTableView.indexPathForSelectedRow  else {return}
+                let tasks = taskManager.getTasksFromSelectedSection(at: taskIndex)
+                destinationVC.task = tasks[taskIndex.row]
+            }
+        }
+    }
+
 }
  
 
 //MARK: - tableViewDataSource
 
-extension TasksViewController: UITableViewDataSource{
+extension TasksViewController: UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 4
+    }
+
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        let tasks = realm.objects(Task.self)
-        
-        if tableView == todayTableView{
-            let todayTasks = tasks.where {$0.taskDateType == .today}
-            return todayTasks.count
-        } else if tableView == tomorrowTableView {
-            let tomorrowTasks = tasks.where {$0.taskDateType == .tomorrow}
-            return tomorrowTasks.count
-        } else if tableView == onWeekTableView {
-            let onWeekTasks = tasks.where {$0.taskDateType == .onTheWeek}
-            return onWeekTasks.count
-        } else if tableView == somedayTableView {
-            let somedayTasks = tasks.where {$0.taskDateType == .someday}
-            return somedayTasks.count
+        if section == 0 {
+            return taskManager.getTodayTasks().count
+        } else if section == 1 {
+            return taskManager.getTomorrowTasks().count
+        } else if section == 2 {
+            return taskManager.getOnTheWeekTasks().count
+        } else if section == 3 {
+            return taskManager.getSomedayTasks().count
         } else {
             return 0
         }
@@ -99,74 +101,87 @@ extension TasksViewController: UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = todayTableView.dequeueReusableCell(withIdentifier: "TaskReusableCell", for: indexPath) as! TaskTableViewCell
+        let cell = tasksTableView.dequeueReusableCell(withIdentifier: "TaskReusableCell", for: indexPath) as! TaskTableViewCell
         
-       let tasks = realm.objects(Task.self)
+        let tasks = taskManager.getTasksFromSelectedSection(at: indexPath)
         
-        if tableView == todayTableView {
-            let todayTasks = tasks.where {$0.taskDateType == .today}
-            cell.taskTitle.text = todayTasks[indexPath.row].title
-            cell.parentTableView = todayTableView
-            
-        } else if tableView == tomorrowTableView {
-            let tomorrowTasks = tasks.where {$0.taskDateType == .tomorrow}
-            cell.taskTitle.text = tomorrowTasks[indexPath.row].title
-            cell.parentTableView = tomorrowTableView
-            
-        } else if tableView == onWeekTableView {
-            let onWeekTasks = tasks.where {$0.taskDateType == .onTheWeek}
-            cell.taskTitle.text = onWeekTasks[indexPath.row].title
-            cell.parentTableView = onWeekTableView
-            
-        } else if tableView == somedayTableView {
-            let somedayTasks = tasks.where {$0.taskDateType == .someday}
-            cell.taskTitle.text = somedayTasks[indexPath.row].title
-            cell.parentTableView = somedayTableView
-        }
-        cell.tag = indexPath.row
+        cell.taskTitle.text = tasks[indexPath.row].title
         cell.delegate = self
         return cell
     }
+    
+    
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        taskManager.replaceTask(from: sourceIndexPath, to: destinationIndexPath)
+    }
 }
+
+
+//MARK: - tableViewDelegate
+
+extension TasksViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "editTask", sender: tableView.cellForRow(at: indexPath))
+    }
+    
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        let label = UILabel(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.size.width, height: 30))
+        label.textColor = UIColor(named: "ContentDark")
+        label.font = UIFont(name: "Poppins-Medium", size: CGFloat(24))
+    
+        switch section {
+        case 0: label.text = "Today"
+        case 1: label.text = "Tomorrow"
+        case 2: label.text =  "On the week"
+        case 3: label.text =  "Someday"
+        default: label.text =  ""
+        }
+        return label
+    }
+    
+}
+
+
+
+
+
+//MARK: - Delete task when done button pressed
 
 extension TasksViewController: TaskTableViewCellDelegate {
     
-    func taskDoneButtonPressed(onCell cell: TaskTableViewCell, from parentTableView: UITableView) {
+    func taskDoneButtonPressed(onCell cell: TaskTableViewCell) {
+
+        guard let indexPath = tasksTableView.indexPath(for: cell) else {return}
         
-        var tasks: Results<Task>
-        
-        switch parentTableView {
-        case todayTableView:
-            tasks = realm.objects(Task.self).where {
-                $0.taskDateType == .today
-            }
-        case tomorrowTableView:
-            tasks = realm.objects(Task.self).where {
-                $0.taskDateType == .tomorrow
-            }
-        case onWeekTableView:
-            tasks = realm.objects(Task.self).where {
-                $0.taskDateType == .onTheWeek
-            }
-        case somedayTableView:
-            tasks = realm.objects(Task.self).where {
-                $0.taskDateType == .someday
-            }
-        default: return
-        }
+        let tasks = taskManager.getTasksFromSelectedSection(at: indexPath)
+        taskManager.decreaseAllTasksRows(after: indexPath)
         
         try! realm.write {
-            realm.delete(tasks[cell.tag])
+            realm.delete(tasks[indexPath.row])
         }
-        
-//        if let indexPath = parentTableView.indexPath(for: cell) {
-//            parentTableView.deleteRows(at: [indexPath], with: .left)
-//        }
-        //updateTableViews()
-        
+
+        tasksTableView.deleteRows(at: [indexPath], with: .left)
+        tasksTableView.reloadData()
     }
 
 }
 
 
-
+extension TasksViewController: UITableViewDragDelegate {
+    
+    func tableView(_ tableView: UITableView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
+        
+        let tasks = taskManager.getTasksFromSelectedSection(at: indexPath)
+        
+        let item = UIDragItem(itemProvider: NSItemProvider())
+        item.localObject = tasks[indexPath.row]
+        return [item]
+    }
+    
+    
+    
+    
+}

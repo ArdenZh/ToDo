@@ -11,5 +11,6 @@ import RealmSwift
 class SubTask: EmbeddedObject {
     @Persisted var title: String = ""
     @Persisted var doneProperty: Bool = false
+    @Persisted var row: Int = 0
     //@Persisted(originProperty: "subTasks") var parentTask: LinkingObjects<Task>
 }
