@@ -23,7 +23,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="0yc-te-QeP">
-                        <rect key="frame" x="10" y="10" width="300" height="112"/>
+                        <rect key="frame" x="10" y="10" width="250" height="112"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vhF-aj-TaT">
                                 <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
@@ -38,7 +38,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label Label Label Label Label Label Label Label Label Label Label Label Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FxE-Jq-bCw">
-                                <rect key="frame" x="30" y="0.0" width="270" height="76"/>
+                                <rect key="frame" x="30" y="0.0" width="220" height="101"/>
                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -49,7 +49,7 @@
                 <color key="backgroundColor" name="BackgroundWhite"/>
                 <constraints>
                     <constraint firstItem="0yc-te-QeP" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="Cae-A1-4VQ"/>
-                    <constraint firstAttribute="trailing" secondItem="0yc-te-QeP" secondAttribute="trailing" constant="10" id="LZy-z8-Vfm"/>
+                    <constraint firstAttribute="trailing" secondItem="0yc-te-QeP" secondAttribute="trailing" constant="60" id="LZy-z8-Vfm"/>
                     <constraint firstItem="0yc-te-QeP" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="VaV-KG-77x"/>
                     <constraint firstAttribute="bottom" secondItem="0yc-te-QeP" secondAttribute="bottom" constant="10" id="hng-dA-tEo"/>
                 </constraints>

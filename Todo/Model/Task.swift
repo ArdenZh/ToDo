@@ -9,11 +9,14 @@ import Foundation
 import RealmSwift
 
 class Task: Object {
-    @Persisted var title: String = ""
-    @Persisted var note: String?
+    @Persisted var title: String = "New task"
+   // @Persisted var note: String?
     @Persisted var doneProperty: Bool = false
-    @Persisted var taskDate: Date = Date()
-    @Persisted var taskDateType: TaskDateType = .today
+   // @Persisted var section: Int = 0
+    @Persisted var rowInSection: Int = 0
+    
+    @Persisted var date: Date? = nil
+    @Persisted var dateType: TaskDateType = .today
     @Persisted var subTasks: List<SubTask>
 }
 

@@ -8,7 +8,7 @@
 import UIKit
 
 protocol TaskTableViewCellDelegate {
-    func taskDoneButtonPressed(onCell cell: TaskTableViewCell, from parentTableView: UITableView)
+    func taskDoneButtonPressed(onCell cell: TaskTableViewCell)
 }
 
 
@@ -18,7 +18,6 @@ class TaskTableViewCell: UITableViewCell {
     @IBOutlet weak var taskDoneButton: UIButton!
     
     var delegate: TaskTableViewCellDelegate?
-    var parentTableView: ContentSizedTableView?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -28,7 +27,8 @@ class TaskTableViewCell: UITableViewCell {
     
     @IBAction func taskDoneButtonPressed(_ sender: UIButton) {
         taskDoneButton.imageView?.image = UIImage(named: "taskNotDone")
-        delegate?.taskDoneButtonPressed(onCell: self, from: parentTableView!)
+        delegate?.taskDoneButtonPressed(onCell: self)
+        
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

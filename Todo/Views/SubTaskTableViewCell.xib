@@ -35,8 +35,8 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="taskNotDone"/>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="skjdlfsnjsonaj anfjlk skjsafl ksajfk lksafjklsa safjkl lkasf" borderStyle="roundedRect" placeholder="New subtask" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JbS-gC-Twb">
-                                <rect key="frame" x="30" y="3" width="270" height="34"/>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="skjdlfsnjsonaj anfjlk skjsafl ksajfk lksafjklsa safjkl lkasf" placeholder="New subtask" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="JbS-gC-Twb">
+                                <rect key="frame" x="30" y="8" width="270" height="24"/>
                                 <color key="backgroundColor" name="BackgroundWhite"/>
                                 <color key="textColor" name="ContentDark"/>
                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="16"/>

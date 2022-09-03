@@ -11,9 +11,6 @@
         <array key="Poppins-Regular.ttf">
             <string>Poppins-Regular</string>
         </array>
-        <array key="Poppins-SemiBold.ttf">
-            <string>Poppins-SemiBold</string>
-        </array>
     </customFonts>
     <scenes>
         <!--Tasks View Controller-->
@@ -41,61 +38,16 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wRc-pM-K2d" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1436"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="370"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="UgD-Ad-H8R">
-                                                <rect key="frame" x="10" y="10" width="394" height="1416"/>
+                                                <rect key="frame" x="10" y="10" width="394" height="300"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Today" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HwO-6U-Dbn">
-                                                        <rect key="frame" x="0.0" y="0.0" width="394" height="36.5"/>
-                                                        <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="26"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
                                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="JVW-J3-bFS" customClass="ContentSizedTableView" customModule="Todo" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="46.5" width="394" height="300"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="394" height="300"/>
                                                         <color key="backgroundColor" name="BackgroundWhite"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="10" id="TJ7-9h-rD7"/>
-                                                        </constraints>
-                                                    </tableView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tomorrow" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1EG-K1-Ess">
-                                                        <rect key="frame" x="0.0" y="356.5" width="394" height="36.5"/>
-                                                        <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="26"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="5W2-0X-03c" customClass="ContentSizedTableView" customModule="Todo" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="403" width="394" height="300"/>
-                                                        <color key="backgroundColor" name="BackgroundWhite"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="10" id="qYW-Ip-krc"/>
-                                                        </constraints>
-                                                    </tableView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="On the week" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ns-eT-z90">
-                                                        <rect key="frame" x="0.0" y="713" width="394" height="36.5"/>
-                                                        <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="26"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="xGd-gx-5xC" customClass="ContentSizedTableView" customModule="Todo" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="759.5" width="394" height="300"/>
-                                                        <color key="backgroundColor" name="BackgroundWhite"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="10" id="cte-TZ-9Hy"/>
-                                                        </constraints>
-                                                    </tableView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Someday" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NGC-zu-j5K">
-                                                        <rect key="frame" x="0.0" y="1069.5" width="394" height="36.5"/>
-                                                        <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="26"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="lPI-fB-lJA" customClass="ContentSizedTableView" customModule="Todo" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="1116" width="394" height="300"/>
-                                                        <color key="backgroundColor" name="BackgroundWhite"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="10" id="reQ-y1-0UD"/>
                                                         </constraints>
                                                     </tableView>
                                                 </subviews>
@@ -104,7 +56,7 @@
                                         <color key="backgroundColor" name="BackgroundWhite"/>
                                         <constraints>
                                             <constraint firstItem="UgD-Ad-H8R" firstAttribute="top" secondItem="wRc-pM-K2d" secondAttribute="top" constant="10" id="3zl-6v-Dwn"/>
-                                            <constraint firstAttribute="bottom" secondItem="UgD-Ad-H8R" secondAttribute="bottom" constant="10" id="XYg-Xj-nNb"/>
+                                            <constraint firstAttribute="bottom" secondItem="UgD-Ad-H8R" secondAttribute="bottom" constant="60" id="XYg-Xj-nNb"/>
                                             <constraint firstItem="UgD-Ad-H8R" firstAttribute="leading" secondItem="wRc-pM-K2d" secondAttribute="leading" constant="10" id="Zq2-Mm-WdL"/>
                                             <constraint firstAttribute="trailing" secondItem="UgD-Ad-H8R" secondAttribute="trailing" constant="10" id="kdw-MK-dfY"/>
                                         </constraints>
@@ -121,15 +73,17 @@
                                 <viewLayoutGuide key="frameLayoutGuide" id="JgR-jf-Yp9"/>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EBg-qP-0Bs">
-                                <rect key="frame" x="314" y="782" width="80" height="80"/>
+                                <rect key="frame" x="334" y="802" width="60" height="60"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="80" id="MqK-Gr-BDI"/>
-                                    <constraint firstAttribute="width" constant="80" id="j7W-25-CcF"/>
+                                    <constraint firstAttribute="height" constant="60" id="MqK-Gr-BDI"/>
+                                    <constraint firstAttribute="width" constant="60" id="j7W-25-CcF"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="addButton"/>
+                                <buttonConfiguration key="configuration" style="plain" image="addButton">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="default"/>
+                                </buttonConfiguration>
                                 <connections>
-                                    <segue destination="tan-aw-AEf" kind="show" id="auB-8f-4Gk"/>
+                                    <segue destination="tan-aw-AEf" kind="show" identifier="addNewTask" id="auB-8f-4Gk"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -148,10 +102,8 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="onWeekTableView" destination="xGd-gx-5xC" id="bYt-Q5-1Mg"/>
-                        <outlet property="somedayTableView" destination="lPI-fB-lJA" id="liZ-R7-5WA"/>
-                        <outlet property="todayTableView" destination="JVW-J3-bFS" id="sYq-FH-Axw"/>
-                        <outlet property="tomorrowTableView" destination="5W2-0X-03c" id="TRB-xX-tf4"/>
+                        <outlet property="tasksTableView" destination="JVW-J3-bFS" id="sYq-FH-Axw"/>
+                        <segue destination="tan-aw-AEf" kind="show" identifier="editTask" id="J73-B3-PCe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -170,26 +122,26 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="688"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ph9-gi-5Ig" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="211.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="467.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="7WH-Ef-CZP">
-                                                <rect key="frame" x="10" y="40" width="394" height="161.5"/>
+                                                <rect key="frame" x="10" y="40" width="394" height="417.5"/>
                                                 <subviews>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="New task" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2rS-Kj-H2Y">
-                                                        <rect key="frame" x="0.0" y="0.0" width="394" height="37.5"/>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="New task" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2rS-Kj-H2Y">
+                                                        <rect key="frame" x="0.0" y="0.0" width="394" height="29.5"/>
                                                         <color key="backgroundColor" name="BackgroundWhite"/>
                                                         <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="20"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
-                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="FTA-VL-ia4" customClass="ContentSizedTableView" customModule="Todo" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="47.5" width="394" height="70"/>
+                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="FTA-VL-ia4" customClass="ContentSizedTableView" customModule="Todo" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="39.5" width="394" height="70"/>
                                                         <color key="backgroundColor" name="BackgroundWhite"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="10" id="bJ1-5T-nwp"/>
                                                         </constraints>
                                                     </tableView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tfg-lC-P3x">
-                                                        <rect key="frame" x="0.0" y="127.5" width="394" height="34"/>
+                                                        <rect key="frame" x="0.0" y="119.5" width="394" height="34"/>
                                                         <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" title="Add subtask">
@@ -198,6 +150,54 @@
                                                         <connections>
                                                             <action selector="addSubTaskPressed:" destination="tan-aw-AEf" eventType="touchUpInside" id="ANK-Tc-MkP"/>
                                                         </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WMO-LR-nfQ">
+                                                        <rect key="frame" x="0.0" y="163.5" width="394" height="34"/>
+                                                        <color key="tintColor" name="ContentDark"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="Change date">
+                                                            <fontDescription key="titleFontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
+                                                        </buttonConfiguration>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w6J-K3-IIQ">
+                                                        <rect key="frame" x="0.0" y="207.5" width="394" height="34"/>
+                                                        <color key="tintColor" name="ContentDark"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="Add reminder">
+                                                            <fontDescription key="titleFontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
+                                                        </buttonConfiguration>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wt1-6w-00Z">
+                                                        <rect key="frame" x="0.0" y="251.5" width="394" height="34"/>
+                                                        <color key="tintColor" name="ContentDark"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="Make regular">
+                                                            <fontDescription key="titleFontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
+                                                        </buttonConfiguration>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IcD-fb-rZb">
+                                                        <rect key="frame" x="0.0" y="295.5" width="394" height="34"/>
+                                                        <color key="tintColor" name="ContentDark"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="Add to favourites">
+                                                            <fontDescription key="titleFontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
+                                                        </buttonConfiguration>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="glv-tE-RPy">
+                                                        <rect key="frame" x="0.0" y="339.5" width="394" height="34"/>
+                                                        <color key="tintColor" name="ContentDark"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="Add location">
+                                                            <fontDescription key="titleFontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
+                                                        </buttonConfiguration>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uhP-1Y-IIo">
+                                                        <rect key="frame" x="0.0" y="383.5" width="394" height="34"/>
+                                                        <color key="tintColor" name="ContentDark"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="Delete task">
+                                                            <fontDescription key="titleFontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
+                                                        </buttonConfiguration>
                                                     </button>
                                                 </subviews>
                                             </stackView>
@@ -228,7 +228,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="SGh-os-w8B">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="110"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SCc-3J-nUL">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SCc-3J-nUL" userLabel="ViewForAddTask">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="knS-Uv-VlC">
@@ -334,9 +334,12 @@
                     </view>
                     <navigationItem key="navigationItem" id="ZMP-vy-abR"/>
                     <connections>
+                        <outlet property="addSubTaskButton" destination="tfg-lC-P3x" id="Ju6-yZ-DAX"/>
                         <outlet property="bottomViewWithButtons" destination="08I-Ry-iil" id="iRl-S8-s4g"/>
+                        <outlet property="changeDateButton" destination="WMO-LR-nfQ" id="5An-C4-nTg"/>
                         <outlet property="subTasksTableView" destination="FTA-VL-ia4" id="6f7-Y6-bBF"/>
                         <outlet property="titleTextField" destination="2rS-Kj-H2Y" id="TZC-y8-o41"/>
+                        <outlet property="viewWithButtonsForAddTask" destination="SCc-3J-nUL" id="QU6-y6-B5t"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tSz-Ab-4hu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -425,6 +428,9 @@
             <point key="canvasLocation" x="1773.913043478261" y="97.767857142857139"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="J73-B3-PCe"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="Calendar" width="24" height="27"/>
         <image name="addButton" width="80" height="80"/>
