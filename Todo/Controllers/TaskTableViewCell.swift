@@ -26,7 +26,7 @@ class TaskTableViewCell: UITableViewCell {
     
     
     @IBAction func taskDoneButtonPressed(_ sender: UIButton) {
-        taskDoneButton.imageView?.image = UIImage(named: "taskNotDone")
+        taskDoneButton.imageView?.image = UIImage(named: K.Images.taskNotDone)
         delegate?.taskDoneButtonPressed(onCell: self)
         
     }

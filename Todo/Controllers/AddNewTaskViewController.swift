@@ -9,6 +9,7 @@ import UIKit
 import RealmSwift
 import DatePickerDialog
 import SwiftUI
+import UserNotifications
 
 class AddNewTaskViewController: UIViewController {
     
@@ -19,33 +20,36 @@ class AddNewTaskViewController: UIViewController {
     
     @IBOutlet weak var addSubTaskButton: UIButton!
     @IBOutlet weak var changeDateButton: UIButton!
+    @IBOutlet weak var addReminderButton: UIButton!
     
     let realm = try! Realm()
     let taskManager = TaskManager()
     var subTasksArray = [SubTask]()
-   // var subTaskList = List<SubTask>()
     var selectedDate: Date?
+    let notificationManager = NotificationManager()
+    var selectedNotificationDate: Date?
     
     var task: Task?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        subTasksTableView.register(UINib(nibName: "SubTaskTableViewCell", bundle: nil), forCellReuseIdentifier: "SubTaskReusableCell")
+        subTasksTableView.register(UINib(nibName: K.subTaskCellNibName, bundle: nil), forCellReuseIdentifier: K.subTaskCellIdentifier)
         self.subTasksTableView.dataSource = self
         
         bottomViewWithButtons.bottomAnchor.constraint(equalTo: view.keyboardLayoutGuide.topAnchor).isActive = true
         
-        //titleTextField.becomeFirstResponder()
+        titleTextField.becomeFirstResponder()
+        
         
         if task != nil {
             titleTextField.text = task!.title
+            
             let date = task?.date?.formatted(date: .abbreviated, time: .omitted)
             changeDateButton.setTitle(date, for: .normal)
-//                .formatted(Date.FormatStyle()
-//                .day(.defaultDigits)
-//                .month(.wide)
-//                .weekday(.wide))
+            changeDateButton.tintColor = UIColor(named: K.Colors.blue)
+            changeDateButton.setImage(UIImage(named: K.Images.dateSelected), for: .normal)
+            
             for subTask in task!.subTasks {
                 subTasksArray.append(subTask)
             }
@@ -75,6 +79,9 @@ class AddNewTaskViewController: UIViewController {
                 realm.add(task!)
             }
         }
+        if selectedNotificationDate != nil {
+            notificationManager.scheduleNotification(for: task!)
+        }
         
         self.dismiss(animated: true)
     }
@@ -87,6 +94,7 @@ class AddNewTaskViewController: UIViewController {
         task!.rowInSection = tasks.where {$0.dateType == dateType}.count
         task!.date = selectedDate
         task!.dateType = dateType
+        task!.notificationDate = selectedNotificationDate
         for i in 0..<task!.subTasks.count {
             task!.subTasks[i].title = subTasksArray[i].title
         }
@@ -96,12 +104,44 @@ class AddNewTaskViewController: UIViewController {
         
     }
     
-
-    @IBAction func unwindSegueToAddNewTaskViewController(segue: UIStoryboardSegue) {
-        guard let svc = segue.source as? DatePickerPopupViewController else {return}
-        self.selectedDate = svc.datePicker.date
+    
+    @IBAction func addDate(_ sender: Any) {
+        performSegue(withIdentifier: K.Segues.addTaskDateSegue, sender: nil)
+    }
+    
+    
+    @IBAction func addNotification(_ sender: Any) {
+        notificationManager.requestAutorization()
+        notificationManager.notificationCenter.delegate = notificationManager
+        performSegue(withIdentifier: K.Segues.addNotificationSegue, sender: nil)
+    }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == K.Segues.addTaskDateSegue {
+            guard let destinationVC = segue.destination as? DatePickerPopupViewController else {return}
+            destinationVC.delegate = self
+            if let date = selectedDate {
+                destinationVC.datePicker.date = date
+            }
+        } else if segue.identifier == K.Segues.addNotificationSegue {
+            guard let destinationVC = segue.destination as? DatePickerPopupViewController else {return}
+            destinationVC.delegate = self
+            destinationVC.datePickerMode = .dateAndTime
+        }
     }
 
+}
+
+extension AddNewTaskViewController: DatePickerDelegate {
+    func updateTaskDate(date: Date) {
+        selectedDate = date
+    }
+    
+    func updateNotificationDate(date: Date) {
+        selectedNotificationDate = date
+    }
+    
 }
 
 
@@ -113,7 +153,7 @@ extension AddNewTaskViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = subTasksTableView.dequeueReusableCell(withIdentifier: "SubTaskReusableCell", for: indexPath) as! SubTaskTableViewCell
+        let cell = subTasksTableView.dequeueReusableCell(withIdentifier: K.subTaskCellIdentifier, for: indexPath) as! SubTaskTableViewCell
         
         cell.titleTextField.delegate = self
         cell.titleTextField.tag = indexPath.row

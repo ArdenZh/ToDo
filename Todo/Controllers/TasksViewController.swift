@@ -21,7 +21,7 @@ class TasksViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tasksTableView.register(UINib(nibName: "TaskTableViewCell", bundle: nil), forCellReuseIdentifier: "TaskReusableCell")
+        tasksTableView.register(UINib(nibName: K.taskCellNibName, bundle: nil), forCellReuseIdentifier: K.taskCellIdentifier)
         tasksTableView.dataSource = self
         tasksTableView.delegate = self
         tasksTableView.dragDelegate = self
@@ -60,7 +60,7 @@ class TasksViewController: UIViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
-        if segue.identifier == "editTask" {
+        if segue.identifier == K.Segues.editTaskSegue {
             if let destinationVC = segue.destination as? AddNewTaskViewController {
                 
                 guard let taskIndex = tasksTableView.indexPathForSelectedRow  else {return}
@@ -101,7 +101,7 @@ extension TasksViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tasksTableView.dequeueReusableCell(withIdentifier: "TaskReusableCell", for: indexPath) as! TaskTableViewCell
+        let cell = tasksTableView.dequeueReusableCell(withIdentifier: K.taskCellIdentifier, for: indexPath) as! TaskTableViewCell
         
         let tasks = taskManager.getTasksFromSelectedSection(at: indexPath)
         
@@ -122,14 +122,14 @@ extension TasksViewController: UITableViewDataSource {
 extension TasksViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "editTask", sender: tableView.cellForRow(at: indexPath))
+        performSegue(withIdentifier: K.Segues.editTaskSegue, sender: tableView.cellForRow(at: indexPath))
     }
     
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         let label = UILabel(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.size.width, height: 30))
-        label.textColor = UIColor(named: "ContentDark")
+        label.textColor = UIColor(named: K.Colors.contentDark)
         label.font = UIFont(name: "Poppins-Medium", size: CGFloat(24))
     
         switch section {

@@ -14,6 +14,8 @@
 		FC39592328AA739F00EB99DE /* ContentSizedTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC39592228AA739F00EB99DE /* ContentSizedTableView.swift */; };
 		FC39592528ABF02F00EB99DE /* DatePickerPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC39592428ABF02F00EB99DE /* DatePickerPopupViewController.swift */; };
 		FC39592728B2890D00EB99DE /* TaskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC39592628B2890D00EB99DE /* TaskManager.swift */; };
+		FC39594D28C4CE1700EB99DE /* NotificationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC39594C28C4CE1700EB99DE /* NotificationsManager.swift */; };
+		FC39594F28CCDEFC00EB99DE /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC39594E28CCDEFB00EB99DE /* Constants.swift */; };
 		FC4D27D128A10EC8006D0CF4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4D27D028A10EC8006D0CF4 /* AppDelegate.swift */; };
 		FC4D27D328A10EC8006D0CF4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4D27D228A10EC8006D0CF4 /* SceneDelegate.swift */; };
 		FC4D27D528A10EC8006D0CF4 /* TasksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4D27D428A10EC8006D0CF4 /* TasksViewController.swift */; };
@@ -54,6 +56,8 @@
 		FC39592228AA739F00EB99DE /* ContentSizedTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentSizedTableView.swift; sourceTree = "<group>"; };
 		FC39592428ABF02F00EB99DE /* DatePickerPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerPopupViewController.swift; sourceTree = "<group>"; };
 		FC39592628B2890D00EB99DE /* TaskManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskManager.swift; sourceTree = "<group>"; };
+		FC39594C28C4CE1700EB99DE /* NotificationsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsManager.swift; sourceTree = "<group>"; };
+		FC39594E28CCDEFB00EB99DE /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = Todo/Constants.swift; sourceTree = SOURCE_ROOT; };
 		FC4D27CD28A10EC8006D0CF4 /* Todo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Todo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC4D27D028A10EC8006D0CF4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FC4D27D228A10EC8006D0CF4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -142,6 +146,7 @@
 				FC4D281428A4EFE6006D0CF4 /* Model */,
 				FC4D281328A4EFDA006D0CF4 /* Views */,
 				FC4D280828A115D1006D0CF4 /* Font */,
+				FC39594E28CCDEFB00EB99DE /* Constants.swift */,
 				FC4D27D928A10ECB006D0CF4 /* Assets.xcassets */,
 				FC4D27DB28A10ECB006D0CF4 /* LaunchScreen.storyboard */,
 				FC4D27DE28A10ECB006D0CF4 /* Info.plist */,
@@ -203,6 +208,7 @@
 				FC4D281028A4EFB3006D0CF4 /* Task.swift */,
 				FC39591C28AA5F1800EB99DE /* SubTask.swift */,
 				FC39592628B2890D00EB99DE /* TaskManager.swift */,
+				FC39594C28C4CE1700EB99DE /* NotificationsManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -344,9 +350,11 @@
 			files = (
 				FC4D280E28A431BD006D0CF4 /* TaskTableViewCell.swift in Sources */,
 				FC4D27D528A10EC8006D0CF4 /* TasksViewController.swift in Sources */,
+				FC39594D28C4CE1700EB99DE /* NotificationsManager.swift in Sources */,
 				FC4D281128A4EFB3006D0CF4 /* Task.swift in Sources */,
 				FC39591D28AA5F1800EB99DE /* SubTask.swift in Sources */,
 				FC4D27D128A10EC8006D0CF4 /* AppDelegate.swift in Sources */,
+				FC39594F28CCDEFC00EB99DE /* Constants.swift in Sources */,
 				FC39592528ABF02F00EB99DE /* DatePickerPopupViewController.swift in Sources */,
 				FC39592028AA695A00EB99DE /* SubTaskTableViewCell.swift in Sources */,
 				FC39592728B2890D00EB99DE /* TaskManager.swift in Sources */,
