@@ -10,5 +10,6 @@ target 'Todo' do
 pod 'RealmSwift', '~>10'
 pod 'DatePickerDialog'
 pod 'Keyboard+LayoutGuide'
+pod 'InstantSearchVoiceOverlay', '~> 1.1.0'
 
 end

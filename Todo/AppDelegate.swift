@@ -8,11 +8,13 @@
 import UIKit
 import RealmSwift
 import DatePickerDialog
+import UserNotifications
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
+    let notificationManager = NotificationManager()
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         do {
@@ -21,6 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } catch {
             print("error")
         }
+        
+        notificationManager.notificationCenter.delegate = notificationManager
         
         return true
     }

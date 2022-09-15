@@ -7,9 +7,16 @@
 
 import UIKit
 
+protocol SubTaskTableViewCellDelegate {
+    func subTaskDoneButtonPressed(onCell cell: SubTaskTableViewCell)
+}
+
 class SubTaskTableViewCell: UITableViewCell {
 
     @IBOutlet weak var titleTextField: UITextField!
+    @IBOutlet weak var subTaskDoneButton: UIButton!
+    
+    var delegate: SubTaskTableViewCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -22,5 +29,11 @@ class SubTaskTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    @IBAction func subTaskDoneButtonPressed(_ sender: UIButton) {
+        subTaskDoneButton.imageView?.image = UIImage(named: K.Images.taskDone)
+        delegate?.subTaskDoneButtonPressed(onCell: self)
+    }
+    
     
 }

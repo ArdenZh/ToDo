@@ -7,16 +7,24 @@
 
 import UIKit
 import RealmSwift
+import InstantSearchVoiceOverlay
 
 class TasksViewController: UIViewController {
     
     @IBOutlet weak var tasksTableView: ContentSizedTableView!
+    @IBOutlet weak var addNewTaskButton: UIButton!
     
     let realm = try! Realm()
     var notificationToken: NotificationToken?
     
     let taskManager = TaskManager()
     
+    lazy var voiceOverlayController: VoiceOverlayController = {
+      let recordableHandler = {
+        return SpeechController(locale: Locale(identifier: "en_US"))
+      }
+      return VoiceOverlayController(speechControllerHandler: recordableHandler)
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,15 +40,17 @@ class TasksViewController: UIViewController {
         let allTasks = realm.objects(Task.self)
         addRealmObserver(results: allTasks)
         
+        // Update tasks date when app loaded up
         taskManager.updateAllTasksDateTypes()
         
         // Update tasks date when a new day comes and the app is active
         NotificationCenter.default.addObserver(self, selector: #selector(dayChanged), name: .NSCalendarDayChanged, object: nil)
-    }
-    
-    @objc func dayChanged(_ notification: Notification) {
-        taskManager.updateAllTasksDateTypes()
-        tasksTableView.reloadData()
+        
+        //add longpress gesture to add button for voice input
+        let longPress = UILongPressGestureRecognizer(target: self, action: #selector(self.longPress(gesture:)))
+        longPress.minimumPressDuration = 0.5
+        addNewTaskButton.addGestureRecognizer(longPress)
+        setupVoicevoiceOverlayControllerSettings()
     }
     
     func addRealmObserver(results: Results<Task>){
@@ -55,6 +65,44 @@ class TasksViewController: UIViewController {
             }
         }
     }
+    
+    @objc func dayChanged(_ notification: Notification) {
+        taskManager.updateAllTasksDateTypes()
+        tasksTableView.reloadData()
+    }
+    
+    @objc func longPress(gesture: UILongPressGestureRecognizer) {
+        if gesture.state == .began {
+            voiceOverlayController.start(on: self, textHandler: { text, final, _ in
+                if final {
+                    try! self.realm.write{
+                        let task = Task()
+                        task.title = text
+                        task.rowInSection = self.tasksTableView.numberOfRows(inSection: 0)
+                        self.realm.add(task)
+                        self.tasksTableView.reloadData()
+                    }
+                }
+            }, errorHandler: { (error) in
+                print("voice output: error \(String(describing: error))")
+            })
+          }
+    }
+    
+    func setupVoicevoiceOverlayControllerSettings() {
+        voiceOverlayController.settings.layout.inputScreen.titleListening = "Start speaking to add a new task"
+        voiceOverlayController.settings.layout.inputScreen.subtitleBulletList = ["Buy eggs", "Send the quarterly report to the boss", "Go for a morning jog"]
+        voiceOverlayController.settings.layout.inputScreen.titleInProgress = "Stop speaking to save a new task"
+        voiceOverlayController.settings.layout.inputScreen.backgroundColor = UIColor(named: K.Colors.contentDark) ?? UIColor.systemGray
+        voiceOverlayController.settings.layout.noPermissionScreen.backgroundColor = UIColor(named: K.Colors.contentDark) ?? UIColor.systemGray
+        voiceOverlayController.settings.layout.noPermissionScreen.startGradientColor = UIColor(named: K.Colors.red) ?? UIColor.systemRed
+        voiceOverlayController.settings.layout.noPermissionScreen.endGradientColor = UIColor(named: K.Colors.red) ?? UIColor.systemRed
+        voiceOverlayController.settings.layout.permissionScreen.backgroundColor = UIColor(named: K.Colors.contentDark) ?? UIColor.systemGray
+        voiceOverlayController.settings.layout.permissionScreen.endGradientColor = UIColor(named: K.Colors.blue) ?? UIColor.systemBlue
+        voiceOverlayController.settings.showResultScreen = false
+    }
+    
+
     
     //MARK: - Navigation
 
@@ -166,7 +214,6 @@ extension TasksViewController: TaskTableViewCellDelegate {
         tasksTableView.deleteRows(at: [indexPath], with: .left)
         tasksTableView.reloadData()
     }
-
 }
 
 
@@ -180,8 +227,6 @@ extension TasksViewController: UITableViewDragDelegate {
         item.localObject = tasks[indexPath.row]
         return [item]
     }
-    
-    
     
     
 }
