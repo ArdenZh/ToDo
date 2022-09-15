@@ -511,6 +511,8 @@
 				DEVELOPMENT_TEAM = 8QGJJ7998A;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Todo/Info.plist;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Audio is recorded to transcribe the task. Audio recordings are discarded after transcription.";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "You can add new tasks using voice input";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -541,6 +543,8 @@
 				DEVELOPMENT_TEAM = 8QGJJ7998A;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Todo/Info.plist;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Audio is recorded to transcribe the task. Audio recordings are discarded after transcription.";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "You can add new tasks using voice input";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

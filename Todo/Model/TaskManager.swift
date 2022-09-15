@@ -173,6 +173,12 @@ class TaskManager {
             return getTodayTasks()
         }
     }
+    
+    func getTaskByDateTypeAndRow(dateTypeString: String, row: Int) -> Task? {
+        let task = realm.objects(Task.self)
+            .where {$0.dateType.rawValue == dateTypeString && $0.rowInSection == row}
+        return task.first
+    }
 
 }
 

@@ -74,6 +74,7 @@
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EBg-qP-0Bs">
                                 <rect key="frame" x="334" y="802" width="60" height="60"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="MqK-Gr-BDI"/>
                                     <constraint firstAttribute="width" constant="60" id="j7W-25-CcF"/>
@@ -102,6 +103,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="addNewTaskButton" destination="EBg-qP-0Bs" id="15D-e9-MPC"/>
                         <outlet property="tasksTableView" destination="JVW-J3-bFS" id="sYq-FH-Axw"/>
                         <segue destination="tan-aw-AEf" kind="show" identifier="editTask" id="J73-B3-PCe"/>
                     </connections>
@@ -122,10 +124,10 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="688"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ph9-gi-5Ig" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="495.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="447.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="7WH-Ef-CZP">
-                                                <rect key="frame" x="10" y="40" width="394" height="445.5"/>
+                                                <rect key="frame" x="10" y="40" width="394" height="397.5"/>
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="New task" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2rS-Kj-H2Y">
                                                         <rect key="frame" x="0.0" y="0.0" width="394" height="29.5"/>
@@ -154,65 +156,71 @@
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WMO-LR-nfQ">
                                                         <rect key="frame" x="0.0" y="167.5" width="394" height="38"/>
-                                                        <color key="tintColor" name="ContentDark"/>
+                                                        <color key="tintColor" name="contentDark"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" image="date" title="Change date" imagePadding="5">
                                                             <fontDescription key="titleFontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
-                                                            <color key="baseForegroundColor" name="ContentDark"/>
+                                                            <color key="baseForegroundColor" name="contentDark"/>
                                                         </buttonConfiguration>
                                                         <connections>
-                                                            <action selector="addDate:" destination="tan-aw-AEf" eventType="touchUpInside" id="gds-7P-YY9"/>
+                                                            <action selector="addDatePressed:" destination="tan-aw-AEf" eventType="touchUpInside" id="sh1-7L-TGf"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w6J-K3-IIQ">
                                                         <rect key="frame" x="0.0" y="215.5" width="394" height="38"/>
-                                                        <color key="tintColor" name="ContentDark"/>
+                                                        <color key="tintColor" name="contentDark"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" image="notification" title="Add reminder" imagePadding="5">
                                                             <fontDescription key="titleFontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
-                                                            <color key="baseForegroundColor" name="ContentDark"/>
+                                                            <color key="baseForegroundColor" name="contentDark"/>
                                                         </buttonConfiguration>
                                                         <connections>
-                                                            <action selector="addNotification:" destination="tan-aw-AEf" eventType="touchUpInside" id="YN5-MG-fSf"/>
+                                                            <action selector="addNotificationPressed:" destination="tan-aw-AEf" eventType="touchUpInside" id="cnT-8u-dru"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wt1-6w-00Z">
                                                         <rect key="frame" x="0.0" y="263.5" width="394" height="38"/>
-                                                        <color key="tintColor" name="ContentDark"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <color key="tintColor" name="contentDark"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" image="repeat" title="Make regular" imagePadding="5">
                                                             <fontDescription key="titleFontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
-                                                            <color key="baseForegroundColor" name="ContentDark"/>
+                                                            <color key="baseForegroundColor" name="contentDark"/>
                                                         </buttonConfiguration>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IcD-fb-rZb">
-                                                        <rect key="frame" x="0.0" y="311.5" width="394" height="38"/>
-                                                        <color key="tintColor" name="ContentDark"/>
+                                                        <rect key="frame" x="0.0" y="263.5" width="394" height="38"/>
+                                                        <color key="tintColor" name="contentDark"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" image="favourites" title="Add to favourites" imagePadding="5">
                                                             <fontDescription key="titleFontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
-                                                            <color key="baseForegroundColor" name="ContentDark"/>
+                                                            <color key="baseForegroundColor" name="contentDark"/>
                                                         </buttonConfiguration>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="glv-tE-RPy">
-                                                        <rect key="frame" x="0.0" y="359.5" width="394" height="38"/>
-                                                        <color key="tintColor" name="ContentDark"/>
+                                                        <rect key="frame" x="0.0" y="311.5" width="394" height="38"/>
+                                                        <color key="tintColor" name="contentDark"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" image="location" title="Add location" imagePadding="5">
                                                             <fontDescription key="titleFontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
-                                                            <color key="baseForegroundColor" name="ContentDark"/>
+                                                            <color key="baseForegroundColor" name="contentDark"/>
                                                         </buttonConfiguration>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uhP-1Y-IIo">
-                                                        <rect key="frame" x="0.0" y="407.5" width="394" height="38"/>
-                                                        <color key="tintColor" name="ContentDark"/>
+                                                        <rect key="frame" x="0.0" y="359.5" width="394" height="38"/>
+                                                        <color key="tintColor" name="red"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" image="trash" title="Delete task" imagePadding="5">
                                                             <fontDescription key="titleFontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
-                                                            <color key="baseForegroundColor" name="Red"/>
+                                                            <color key="baseForegroundColor" name="red"/>
                                                         </buttonConfiguration>
                                                     </button>
                                                 </subviews>
+                                                <variation key="default">
+                                                    <mask key="subviews">
+                                                        <exclude reference="Wt1-6w-00Z"/>
+                                                    </mask>
+                                                </variation>
                                             </stackView>
                                         </subviews>
                                         <color key="backgroundColor" name="BackgroundWhite"/>
@@ -256,11 +264,11 @@
                                                                 <state key="normal" title="Button"/>
                                                                 <buttonConfiguration key="configuration" style="plain" image="date" title=""/>
                                                                 <connections>
-                                                                    <action selector="addDate:" destination="tan-aw-AEf" eventType="touchUpInside" id="aSh-NT-pl5"/>
+                                                                    <action selector="addDatePressed:" destination="tan-aw-AEf" eventType="touchUpInside" id="v0b-kg-5aQ"/>
                                                                 </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gxd-Fj-KyA">
-                                                                <rect key="frame" x="86" y="0.0" width="30" height="30"/>
+                                                                <rect key="frame" x="114.5" y="0.0" width="30" height="30"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="30" id="AKL-bR-SLp"/>
                                                                     <constraint firstAttribute="width" constant="30" id="wOh-Wm-pPw"/>
@@ -268,32 +276,26 @@
                                                                 <state key="normal" title="Button"/>
                                                                 <buttonConfiguration key="configuration" style="plain" image="notification" title=""/>
                                                                 <connections>
-                                                                    <action selector="addDate:" destination="tan-aw-AEf" eventType="touchUpInside" id="f62-Kj-aVf"/>
+                                                                    <action selector="addNotificationPressed:" destination="tan-aw-AEf" eventType="touchUpInside" id="dS2-bs-mw7"/>
                                                                 </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8t9-z6-Mkf">
-                                                                <rect key="frame" x="172" y="0.0" width="30" height="30"/>
+                                                                <rect key="frame" x="229.5" y="0.0" width="30" height="30"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="30" id="XN2-10-yuG"/>
                                                                     <constraint firstAttribute="height" constant="30" id="eua-hw-63S"/>
                                                                 </constraints>
                                                                 <state key="normal" title="Button"/>
                                                                 <buttonConfiguration key="configuration" style="plain" image="favourites" title=""/>
-                                                                <connections>
-                                                                    <action selector="addDate:" destination="tan-aw-AEf" eventType="touchUpInside" id="9Li-Ml-o9Z"/>
-                                                                </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DeT-x5-V4q">
-                                                                <rect key="frame" x="258" y="0.0" width="30" height="30"/>
+                                                                <rect key="frame" x="344" y="0.0" width="30" height="30"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="30" id="Inp-uG-0QG"/>
                                                                     <constraint firstAttribute="width" constant="30" id="Mi4-VA-hjm"/>
                                                                 </constraints>
                                                                 <state key="normal" title="Button"/>
                                                                 <buttonConfiguration key="configuration" style="plain" image="location" imagePadding="0.0"/>
-                                                                <connections>
-                                                                    <action selector="addNotification:" destination="tan-aw-AEf" eventType="touchUpInside" id="cl1-9M-A0I"/>
-                                                                </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pHZ-SD-ITN">
                                                                 <rect key="frame" x="344" y="0.0" width="30" height="30"/>
@@ -307,6 +309,11 @@
                                                                 </buttonConfiguration>
                                                             </button>
                                                         </subviews>
+                                                        <variation key="default">
+                                                            <mask key="subviews">
+                                                                <exclude reference="pHZ-SD-ITN"/>
+                                                            </mask>
+                                                        </variation>
                                                     </stackView>
                                                 </subviews>
                                                 <color key="backgroundColor" name="lightBlue"/>
@@ -379,6 +386,7 @@
                         <outlet property="addSubTaskButton" destination="tfg-lC-P3x" id="Ju6-yZ-DAX"/>
                         <outlet property="bottomViewWithButtons" destination="08I-Ry-iil" id="iRl-S8-s4g"/>
                         <outlet property="changeDateButton" destination="WMO-LR-nfQ" id="5An-C4-nTg"/>
+                        <outlet property="changeReminderButton" destination="w6J-K3-IIQ" id="Ipg-8H-vhL"/>
                         <outlet property="subTasksTableView" destination="FTA-VL-ia4" id="6f7-Y6-bBF"/>
                         <outlet property="titleTextField" destination="2rS-Kj-H2Y" id="TZC-y8-o41"/>
                         <outlet property="viewWithButtonsForAddTask" destination="SCc-3J-nUL" id="QU6-y6-B5t"/>
@@ -475,7 +483,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="IWX-jP-IaD"/>
-        <segue reference="auB-8f-4Gk"/>
+        <segue reference="J73-B3-PCe"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="addButton" width="60" height="60"/>
@@ -499,11 +507,17 @@
         <namedColor name="Red">
             <color red="0.93333333333333335" green="0.23921568627450981" blue="0.28235294117647058" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <namedColor name="contentDark">
+            <color red="0.18431372549019609" green="0.20784313725490197" blue="0.2196078431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="lightBlue">
             <color red="0.81960784313725488" green="0.85490196078431369" blue="0.90588235294117647" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="lightBlue2">
             <color red="0.89803921568627454" green="0.94117647058823528" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="red">
+            <color red="0.93333333333333335" green="0.23921568627450981" blue="0.28235294117647058" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>
