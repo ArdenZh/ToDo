@@ -7,6 +7,7 @@
 
 import UIKit
 
+//class for stretchable tableViews
 final class ContentSizedTableView: UITableView {
 
     override var contentSize:CGSize {

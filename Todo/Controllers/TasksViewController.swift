@@ -16,7 +16,6 @@ class TasksViewController: UIViewController {
     
     let realm = try! Realm()
     var notificationToken: NotificationToken?
-    
     let taskManager = TaskManager()
     
     lazy var voiceOverlayController: VoiceOverlayController = {
@@ -26,6 +25,7 @@ class TasksViewController: UIViewController {
       return VoiceOverlayController(speechControllerHandler: recordableHandler)
     }()
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -34,8 +34,8 @@ class TasksViewController: UIViewController {
         tasksTableView.delegate = self
         tasksTableView.dragDelegate = self
         tasksTableView.dragInteractionEnabled = true
+        tasksTableView.separatorStyle = .none
 
-        
         //update table view when new task is added
         let allTasks = realm.objects(Task.self)
         addRealmObserver(results: allTasks)
@@ -53,6 +53,7 @@ class TasksViewController: UIViewController {
         setupVoicevoiceOverlayControllerSettings()
     }
     
+    //observe changes in database
     func addRealmObserver(results: Results<Task>){
         notificationToken = results.observe { [weak self] (changes: RealmCollectionChange) in
             switch changes {
@@ -66,11 +67,13 @@ class TasksViewController: UIViewController {
         }
     }
     
+    //Update tasks date when a new day comes and the app is active
     @objc func dayChanged(_ notification: Notification) {
         taskManager.updateAllTasksDateTypes()
         tasksTableView.reloadData()
     }
     
+    //add task by voice input
     @objc func longPress(gesture: UILongPressGestureRecognizer) {
         if gesture.state == .began {
             voiceOverlayController.start(on: self, textHandler: { text, final, _ in
@@ -106,6 +109,7 @@ class TasksViewController: UIViewController {
     
     //MARK: - Navigation
 
+    //if we want to edit task
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
         if segue.identifier == K.Segues.editTaskSegue {
@@ -155,6 +159,11 @@ extension TasksViewController: UITableViewDataSource {
         
         cell.taskTitle.text = tasks[indexPath.row].title
         cell.delegate = self
+        if tasks[indexPath.row].isFavourite {
+            cell.favouriteImageView.isHidden = false
+        } else {
+            cell.favouriteImageView.isHidden = true
+        }
         return cell
     }
     
@@ -193,9 +202,6 @@ extension TasksViewController: UITableViewDelegate {
 }
 
 
-
-
-
 //MARK: - Delete task when done button pressed
 
 extension TasksViewController: TaskTableViewCellDelegate {
@@ -216,6 +222,8 @@ extension TasksViewController: TaskTableViewCellDelegate {
     }
 }
 
+
+//MARK: - UITableViewDragDelegate
 
 extension TasksViewController: UITableViewDragDelegate {
     

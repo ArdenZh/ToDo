@@ -7,25 +7,20 @@
 
 import UIKit
 import RealmSwift
-import DatePickerDialog
-import SwiftUI
-import UserNotifications
-import AuthenticationServices
-
 
 class AddNewTaskViewController: UIViewController {
     
-    @IBOutlet weak var viewWithButtonsForAddTask: UIView!
-    @IBOutlet weak var bottomViewWithButtons: UIView!
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var subTasksTableView: ContentSizedTableView!
-    
+    @IBOutlet weak var bottomViewWithButtons: UIView!
     @IBOutlet weak var addSubTaskButton: UIButton!
     @IBOutlet weak var changeDateButton: UIButton!
-    @IBOutlet weak var addReminderButton: UIButton!
     @IBOutlet weak var changeReminderButton: UIButton!
-    
-    
+    @IBOutlet weak var changeFavouriteButton: UIButton!
+    @IBOutlet weak var deleteTaskButton: UIButton!
+    @IBOutlet weak var addDateButton: UIButton!
+    @IBOutlet weak var addNotificationButton: UIButton!
+    @IBOutlet weak var addFavouriteButton: UIButton!
     
     let realm = try! Realm()
     let taskManager = TaskManager()
@@ -33,6 +28,7 @@ class AddNewTaskViewController: UIViewController {
     var selectedDate: Date?
     let notificationManager = NotificationManager()
     var selectedNotificationDate: Date?
+    var selectedFavourite = false
     
     var task: Task?
     
@@ -49,38 +45,58 @@ class AddNewTaskViewController: UIViewController {
         
         if task != nil {
             titleTextField.text = task!.title
+            let formatter = DateFormatter()
+            formatter.locale = Locale(identifier: "en_us")
+            formatter.dateStyle = .medium
             
-            if let date = task!.date?.formatted(date: .abbreviated, time: .omitted) {
-                changeDateButton.setTitle(date, for: .normal)
+            if let date = task!.date {
+                formatter.timeStyle = .none
+                let dateStr = formatter.string(from: date)
+                changeDateButton.setTitle(dateStr, for: .normal)
                 changeDateButton.setTitleColor(UIColor(named: K.Colors.blue), for: .normal)
                 changeDateButton.setImage(UIImage(named: K.Images.dateSelected), for: .normal)
                 selectedDate = task!.date
             }
             
-            if let reminder = task!.notificationDate?.formatted(date: .abbreviated, time: .shortened) {
-                changeReminderButton.setTitle(reminder, for: .normal)
+            if let reminder = task!.notificationDate {
+                formatter.timeStyle = .short
+                let dateStr = formatter.string(from: reminder)
+                changeReminderButton.setTitle(dateStr, for: .normal)
                 changeReminderButton.setTitleColor(UIColor(named: K.Colors.blue), for: .normal)
                 changeReminderButton.setImage(UIImage(named: K.Images.notificationSelected), for: .normal)
                 selectedNotificationDate = task!.notificationDate
             }
             
+            selectedFavourite = task!.isFavourite
+            if task!.isFavourite {
+                addFavouriteButton.setImage(UIImage(named: K.Images.favouritesSelected), for: .normal)
+                changeFavouriteButton.setImage(UIImage(named: K.Images.favouritesSelected), for: .normal)
+                changeFavouriteButton.setTitleColor(UIColor(named: K.Colors.blue), for: .normal)
+                changeFavouriteButton.setTitle("Remove from favourites", for: .normal)
+            }
+            
+            bottomViewWithButtons.isHidden = true
+            
             for subTask in task!.subTasks {
                 subTasksArray.append(subTask)
             }
+        } else {
+            changeDateButton.isHidden = true
+            changeReminderButton.isHidden = true
+            changeFavouriteButton.isHidden = true
+            deleteTaskButton.isHidden = true
         }
-        
     }
     
     
     //MARK: - Actions
+    
     @IBAction func addSubTaskPressed(_ sender: UIButton) {
-        
         let newSubTask = SubTask()
         newSubTask.row = subTasksArray.count
         subTasksArray.append(newSubTask)
         subTasksTableView.reloadData()
     }
-    
     
     @IBAction func saveButtonPressed(_ sender: UIButton) {
     
@@ -109,13 +125,13 @@ class AddNewTaskViewController: UIViewController {
         task!.date = selectedDate
         task!.dateType = dateType
         task!.notificationDate = selectedNotificationDate
+        task!.isFavourite = selectedFavourite
         for i in 0..<task!.subTasks.count {
             task!.subTasks[i].title = subTasksArray[i].title
         }
         for i in task!.subTasks.count..<subTasksArray.count {
             task!.subTasks.append(subTasksArray[i])
         }
-        
     }
     
     func addTask() {
@@ -135,6 +151,23 @@ class AddNewTaskViewController: UIViewController {
         notificationManager.requestAutorization()
 //        notificationManager.notificationCenter.delegate = notificationManager
         performSegue(withIdentifier: K.Segues.addNotificationSegue, sender: nil)
+    }
+    
+    
+    
+    @IBAction func changeFavouritePressed(_ sender: UIButton) {
+        selectedFavourite = !selectedFavourite
+        if selectedFavourite {
+            addFavouriteButton.setImage(UIImage(named: K.Images.favouritesSelected), for: .normal)
+            changeFavouriteButton.setImage(UIImage(named: K.Images.favouritesSelected), for: .normal)
+            changeFavouriteButton.setTitleColor(UIColor(named: K.Colors.blue), for: .normal)
+            changeFavouriteButton.setTitle("Remove from favourites", for: .normal)
+        } else {
+            addFavouriteButton.setImage(UIImage(named: K.Images.favourites), for: .normal)
+            changeFavouriteButton.setImage(UIImage(named: K.Images.favourites), for: .normal)
+            changeFavouriteButton.setTitleColor(UIColor(named: K.Colors.contentDark), for: .normal)
+            changeFavouriteButton.setTitle("Add to favourites", for: .normal)
+        }
     }
     
     
@@ -160,10 +193,16 @@ class AddNewTaskViewController: UIViewController {
 extension AddNewTaskViewController: DatePickerDelegate {
     func updateTaskDate(date: Date) {
         selectedDate = date
+        addDateButton.setImage(UIImage(named: K.Images.dateSelected), for: .normal)
+        changeDateButton.setImage(UIImage(named: K.Images.dateSelected), for: .normal)
+        changeDateButton.setTitleColor(UIColor(named: K.Colors.blue), for: .normal)
     }
     
     func updateNotificationDate(date: Date) {
         selectedNotificationDate = date
+        addNotificationButton.setImage(UIImage(named: K.Images.notificationSelected), for: .normal)
+        changeReminderButton.setImage(UIImage(named: K.Images.notificationSelected), for: .normal)
+        changeReminderButton.setTitleColor(UIColor(named: K.Colors.blue), for: .normal)
     }
     
 }
@@ -174,6 +213,7 @@ extension AddNewTaskViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return subTasksArray.count
     }
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -191,6 +231,7 @@ extension AddNewTaskViewController: UITableViewDataSource {
 
 
 //MARK: - TextFieldDelegate
+
 extension AddNewTaskViewController: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
@@ -198,7 +239,6 @@ extension AddNewTaskViewController: UITextFieldDelegate {
         let textFieldText: NSString = (textField.text ?? "") as NSString
         let textUpdated = textFieldText.replacingCharacters(in: range, with: string) as String
         textField.text! = textUpdated
-        
         do {
             try realm.write {
                 subTasksArray[textField.tag].title.append(string)
@@ -206,12 +246,11 @@ extension AddNewTaskViewController: UITextFieldDelegate {
         } catch {
             print("Error saving new items, \(error)")
         }
-        
         return false
     }
     
+    
     func textFieldShouldClear(_ textField: UITextField) -> Bool {
-        
         subTasksArray.remove(at: textField.tag)
         if task != nil  {
             if task!.subTasks.count >= subTasksArray.count {
@@ -231,20 +270,18 @@ extension AddNewTaskViewController: UITextFieldDelegate {
 
 
 //MARK: - SubTaskTableViewCellDelegate
+
 extension AddNewTaskViewController: SubTaskTableViewCellDelegate {
     
     func subTaskDoneButtonPressed(onCell cell: SubTaskTableViewCell) {
         
         guard let indexPath = subTasksTableView.indexPath(for: cell) else {return}
-        
         subTasksArray.remove(at: indexPath.row)
-        
         if task != nil {
             try! realm.write {
                 task?.subTasks.remove(at: indexPath.row)
             }
         }
-        
         subTasksTableView.deleteRows(at: [indexPath], with: .left)
         subTasksTableView.reloadData()
     }

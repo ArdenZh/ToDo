@@ -21,6 +21,7 @@ struct K {
         static let contentDark = "contentDark"
         static let lightBlue = "lightBlue"
         static let red = "red"
+        static let yellow = "yellow"
     }
     
     struct Segues {
@@ -28,6 +29,7 @@ struct K {
         static let addNewTaskSegue = "addNewTask"
         static let addTaskDateSegue = "addTaskDate"
         static let addNotificationSegue = "addNotification"
+        static let addLocationSegue = "addLocation"
     }
     
     struct Images {
@@ -43,5 +45,6 @@ struct K {
         static let repeatSelected = "repeatSelected"
         static let taskDone = "taskDone"
         static let taskNotDone = "taskNotDone"
+        static let favouriteFilled = "favouriteFilled"
     }
 }
