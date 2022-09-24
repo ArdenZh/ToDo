@@ -14,6 +14,7 @@ class Task: Object {
     @Persisted var rowInSection: Int = 0
     @Persisted var date: Date? = nil
     @Persisted var dateType: TaskDateType = .today
+    @Persisted var isFavourite: Bool = false
     @Persisted var notificationDate: Date? = nil
     @Persisted var subTasks: List<SubTask>
 }

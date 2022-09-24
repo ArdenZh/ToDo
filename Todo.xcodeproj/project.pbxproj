@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7B1F4DB79AFCD2188F83CBE2 /* Pods_Todo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87AEA0CC92F804562D4699DF /* Pods_Todo.framework */; };
+		FC2AC61E28D4C5C000AF621C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC2AC61D28D4C5C000AF621C /* MapKit.framework */; };
 		FC39591D28AA5F1800EB99DE /* SubTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC39591C28AA5F1800EB99DE /* SubTask.swift */; };
 		FC39592028AA695A00EB99DE /* SubTaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC39591E28AA695A00EB99DE /* SubTaskTableViewCell.swift */; };
 		FC39592128AA695A00EB99DE /* SubTaskTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC39591F28AA695A00EB99DE /* SubTaskTableViewCell.xib */; };
@@ -50,6 +51,7 @@
 		085CF449EB73883F07925BD3 /* Pods-Todo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Todo.debug.xcconfig"; path = "Target Support Files/Pods-Todo/Pods-Todo.debug.xcconfig"; sourceTree = "<group>"; };
 		595E83C985777FBED9511968 /* Pods-Todo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Todo.release.xcconfig"; path = "Target Support Files/Pods-Todo/Pods-Todo.release.xcconfig"; sourceTree = "<group>"; };
 		87AEA0CC92F804562D4699DF /* Pods_Todo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Todo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FC2AC61D28D4C5C000AF621C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		FC39591C28AA5F1800EB99DE /* SubTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubTask.swift; sourceTree = "<group>"; };
 		FC39591E28AA695A00EB99DE /* SubTaskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubTaskTableViewCell.swift; sourceTree = "<group>"; };
 		FC39591F28AA695A00EB99DE /* SubTaskTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SubTaskTableViewCell.xib; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC2AC61E28D4C5C000AF621C /* MapKit.framework in Frameworks */,
 				7B1F4DB79AFCD2188F83CBE2 /* Pods_Todo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -105,6 +108,7 @@
 		96D2127239640C80FA832EDF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FC2AC61D28D4C5C000AF621C /* MapKit.framework */,
 				87AEA0CC92F804562D4699DF /* Pods_Todo.framework */,
 			);
 			name = Frameworks;
@@ -511,6 +515,7 @@
 				DEVELOPMENT_TEAM = 8QGJJ7998A;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Todo/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Geolocation is needed to show your location on the map.";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Audio is recorded to transcribe the task. Audio recordings are discarded after transcription.";
 				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "You can add new tasks using voice input";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -543,6 +548,7 @@
 				DEVELOPMENT_TEAM = 8QGJJ7998A;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Todo/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Geolocation is needed to show your location on the map.";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Audio is recorded to transcribe the task. Audio recordings are discarded after transcription.";
 				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "You can add new tasks using voice input";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

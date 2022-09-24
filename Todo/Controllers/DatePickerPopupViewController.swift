@@ -37,6 +37,7 @@ class DatePickerPopupViewController: UIViewController {
         saveButton.layer.borderWidth = CGFloat(1)
         saveButton.layer.borderColor = UIColor(named: K.Colors.borderColor)?.cgColor
         datePicker.minimumDate = Date()
+        datePicker.locale = Locale(identifier: "en_US")
         
         switch datePickerMode {
         case .date:
@@ -45,7 +46,6 @@ class DatePickerPopupViewController: UIViewController {
             datePicker.datePickerMode = .dateAndTime
         }
     }
-    
     
     @IBAction func saveButtonPressed(_ sender: Any) {
         switch datePickerMode {
@@ -60,5 +60,4 @@ class DatePickerPopupViewController: UIViewController {
     @IBAction func cancelButtonPressed(_ sender: UIButton) {
         self.dismiss(animated: true)
     }
-    
 }

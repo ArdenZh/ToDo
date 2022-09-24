@@ -45,18 +45,9 @@ class TaskManager {
     
     func replaceTask(from sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         
-        //var task : Task?
-        
-        print("sourceIndexPath.section: \(sourceIndexPath.section)")
-        print("destinationIndexPath.section: \(destinationIndexPath.section)")
-        print(sourceIndexPath.row)
-        
-        var task = getTasksFromSelectedSection(at: sourceIndexPath).where {
+        let task = getTasksFromSelectedSection(at: sourceIndexPath).where {
             $0.rowInSection == sourceIndexPath.row
         }
-        
-        print(task)
-        print(task.first?.title)
         
         guard let t = task.first else {return}
         

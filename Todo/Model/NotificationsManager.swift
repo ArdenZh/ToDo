@@ -48,7 +48,7 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
         let dateComponents = calendar.dateComponents(components, from: date)
         
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
-                
+        
         let identifire = "\(task.dateType.rawValue) \(task.rowInSection)"
         let request = UNNotificationRequest(identifier: identifire,
                                             content: content,
@@ -102,7 +102,7 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
             }
         case "action1":
             try! realm.write{
-                task.notificationDate?.addTimeInterval(15)
+                task.notificationDate?.addTimeInterval(15 * 60)
             }
             scheduleNotification(for: task)
         case "action2":
