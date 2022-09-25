@@ -7,8 +7,6 @@
 
 import UIKit
 import RealmSwift
-import DatePickerDialog
-import UserNotifications
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
