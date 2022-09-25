@@ -1,7 +1,5 @@
 PODS:
-  - DatePickerDialog (4.0)
   - InstantSearchVoiceOverlay (1.1.0)
-  - "Keyboard+LayoutGuide (1.6.0)"
   - Realm (10.28.5):
     - Realm/Headers (= 10.28.5)
   - Realm/Headers (10.28.5)
@@ -9,26 +7,20 @@ PODS:
     - Realm (= 10.28.5)
 
 DEPENDENCIES:
-  - DatePickerDialog
   - InstantSearchVoiceOverlay (~> 1.1.0)
-  - "Keyboard+LayoutGuide"
   - RealmSwift (~> 10)
 
 SPEC REPOS:
   trunk:
-    - DatePickerDialog
     - InstantSearchVoiceOverlay
-    - "Keyboard+LayoutGuide"
     - Realm
     - RealmSwift
 
 SPEC CHECKSUMS:
-  DatePickerDialog: ccff2f91ff7a018057a4d72fa5ad6de49c8cb0cd
   InstantSearchVoiceOverlay: 8fcbd0c143c872e6b39ef9b6475f1dfeb9ebfbcf
-  "Keyboard+LayoutGuide": db44b1764e2bb5d9824cc9cea9d9006cd4442045
   Realm: eb7f6a7a8395906822e6fab71eb8496d6d52b318
   RealmSwift: 6b54904d4a236de143f3411a757641fd74e9cb3d
 
-PODFILE CHECKSUM: f14d866f2e40650add6f1806dc87632e42b2b7fc
+PODFILE CHECKSUM: b748b62f5bf3b68ac83d9f5a2d2edd48c95502d1
 
 COCOAPODS: 1.11.3
